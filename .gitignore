@@ -1,0 +1,6 @@
+lib.my
+/blib/*
+/Makefile
+/MYMETA.yml
+/MYMETA.json
+/pm_to_blib
