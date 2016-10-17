@@ -11,8 +11,8 @@ package Local::Source::Array; {
 	use parent 'Local::Source';
 	
 	sub next {
-		my ($self) = @_;	
-		return shift $self->{array};
+		my ($self) = @_;
+		return $self->{array}[$self->SUPER::next()];
 	}
 }
 

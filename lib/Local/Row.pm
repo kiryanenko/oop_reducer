@@ -10,13 +10,14 @@ package Local::Row; {
 		
 		my $obj = bless \%params, $class;
 		$obj->parse();
+		delete $params{str};
 		return $obj;
 	}
 	
 	sub get {
 		my ($self, $name, $default) = @_;
-		my $res = $self->{struct}->{$name};
-		return defined $res ? $res : $default;
+		return $default unless exists $self->{struct}->{$name};
+		return $self->{struct}->{$name};
 	}
 }
 

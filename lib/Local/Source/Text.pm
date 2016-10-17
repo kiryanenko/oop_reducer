@@ -13,8 +13,7 @@ package Local::Source::Text; {
 	sub new {
 		my ($class, %params) = @_;
 		my $delimiter = defined $params{delimiter} ? $params{delimiter} : "\n";
-		$params{array} = [split $delimiter, $params{text}];
-		return bless \%params, $class;
+		return $class->SUPER::new( array => [split $delimiter, $params{text}] );
 	}
 }
 

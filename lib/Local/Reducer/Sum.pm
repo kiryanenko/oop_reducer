@@ -6,15 +6,11 @@ package Local::Reducer::Sum; {
 	sub reduce {
 		my ($self) = @_;
 		
-		if (my $el = $self->{source}->next()) {
-			if (my $row = $self->{row_class}->new(str => $el)->get($self->{field})) {
-				return $self->reduced( $self->reduced() + $row );
-			} else {
-				return $row; # вернет undef т.к. $default не был указан
-			}
-		} else {
-			return undef;
-		}
+		return undef unless my $el = $self->{source}->next();
+		
+		return undef unless my $row = $self->{row_class}->new(str => $el)->get($self->{field});	# undef т.к. $default не был указан
+				
+		return $self->{reduced} += $row ;
 	}
 	
 }

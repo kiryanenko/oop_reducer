@@ -28,7 +28,6 @@ our $VERSION = '1.00';
 
 	sub reduced {
 		my $self = shift;
-		$self->{reduced} = $_[0] if @_;
 		return $self->{reduced};
 	}
 	
@@ -37,13 +36,13 @@ our $VERSION = '1.00';
 
 	sub reduce_all {
 		my ($self) = @_;
-		while ($self->reduce()) {}
+		while (defined $self->reduce()) {}
 		return $self->reduced();
 	}
 	
 	sub reduce_n {
 		my ($self, $n) = @_;
-		for (my $i = 0; $i < $n && $self->reduce(); $i++) {}
+		for (my $i = 0; $i < $n && defined $self->reduce(); $i++) {}
 		return $self->reduced();
 	}
 }
