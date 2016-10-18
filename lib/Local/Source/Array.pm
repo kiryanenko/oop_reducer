@@ -12,7 +12,7 @@ package Local::Source::Array; {
 	
 	sub next {
 		my ($self) = @_;
-		return $self->{array}[$self->SUPER::next()];
+		return $self->{array}[$self->next_iter()];
 	}
 }
 

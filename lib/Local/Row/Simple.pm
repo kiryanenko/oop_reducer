@@ -5,16 +5,16 @@ package Local::Row::Simple; {
 	
 	sub parse {
 		my $self = shift;
-		
+		my $str = shift;
 		my %struct;
-		for (split ',', $self->{str}) {
+		for (split ',', $str) {
 			if (/^\s*(\w+)\s*:\s*(.*)\s*$/) {
 				$struct{$1} = $2;
 			} else {
 				die "Не валидная строка";
 			}
 		}
-		$self->{struct} = {%struct};
+		return {%struct};
 	}
 }
 

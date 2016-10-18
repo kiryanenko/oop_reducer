@@ -3,14 +3,14 @@ package Local::Row; {
 	use warnings;
 	
 	# Функция парсит строку и возвращает разобобранную структуру
-	sub parse {}
+	sub parse { return shift }
 	
 	sub new {
 		my ($class, %params) = @_;
-		
-		my $obj = bless \%params, $class;
-		$obj->parse();
-		delete $params{str};
+		my %struct = (
+			struct => $class->parse($params{str})
+		);
+		my $obj = bless \%struct, $class;
 		return $obj;
 	}
 	

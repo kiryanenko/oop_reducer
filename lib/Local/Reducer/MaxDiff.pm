@@ -6,13 +6,15 @@ package Local::Reducer::MaxDiff; {
 	sub reduce {
 		my ($self) = @_;
 		
-		return undef unless my $el = $self->{source}->next();
+		my $el = $self->{source}->next() or return;
 		
 		my $row = $self->{row_class}->new(str => $el);
-		return undef unless defined (my $top = $row->get($self->{top})) && 	# undef т.к. $default не был указан
-			defined (my $buttom = $row->get($self->{bottom}));
+		my $top = $row->get($self->{top});
+		my $bottom = $row->get($self->{bottom});
+		
+		return unless defined $top and defined $bottom;
 			
-		my $diff = abs($buttom - $top);
+		my $diff = abs($bottom - $top);
 		return $diff > $self->reduced() ? $self->{reduced} = $diff : $self->reduced();
 	}
 	

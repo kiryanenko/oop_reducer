@@ -6,8 +6,8 @@ package Local::Row::JSON; {
 	
 	sub parse {
 		my $self = shift;
-		
-		$self->{struct} = JSON::XS->new->utf8->decode($self->{str});
+		my $str = shift;
+		return JSON::XS->new->utf8->decode($str);
 	}
 }
 

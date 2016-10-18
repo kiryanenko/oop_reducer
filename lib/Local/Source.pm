@@ -8,7 +8,7 @@ package Local::Source; {
 		return bless \%params, $class;
 	}
 	
-	sub next {
+	sub next_iter {
 		my ($self) = @_;
 		return $self->{iter}++;
 	}
