@@ -25,6 +25,7 @@ my $reducer = Local::Reducer::Sum->new(
     initial_value => 0,
 );
 
+print $reducer->reduce_n(1);
 print $reducer->reduce_all();
 
 $reducer = Local::Reducer::MaxDiff->new(

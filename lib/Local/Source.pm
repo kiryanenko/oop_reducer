@@ -4,13 +4,19 @@ package Local::Source; {
 
 	sub new {
 		my ($class, %params) = @_;
-		$params{iter} = 0; 	# Текущая иитерация
-		return bless \%params, $class;
+		my $self = bless \%params, $class;
+		$self->start_again;
+		return $self;
 	}
 	
 	sub next_iter {
 		my ($self) = @_;
 		return $self->{iter}++;
+	}
+	
+	sub start_again {
+		my ($self) = @_;
+		$self->{iter} = 0;
 	}
 }
 
